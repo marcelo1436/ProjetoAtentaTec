@@ -20,28 +20,27 @@ public class WebAppInitializer implements WebApplicationInitializer {
 	public void onStartup(ServletContext container) throws ServletException {
 		AnnotationConfigWebApplicationContext rootContext = new AnnotationConfigWebApplicationContext();
 		rootContext.getEnvironment().setDefaultProfiles("production");
-		rootContext.scan("br.com.cs.mvc");
+		rootContext.scan("br.com.pat.mvc");
 
 		container.addListener(new ContextLoaderListener(rootContext));
 
-		FilterRegistration.Dynamic fr = container.addFilter("FiltroRequisicao",new FiltroRequisicao());
+		FilterRegistration.Dynamic fr = container.addFilter("FiltroRequisicao", new FiltroRequisicao());
 
 		fr.setInitParameter("encoding", "UTF-8");
 		fr.setInitParameter("forceEncoding", "true");
 		fr.addMappingForUrlPatterns(null, true, "/*");
-		
-		
-		FilterRegistration.Dynamic hf = container.addFilter("hibernateFilter",new OpenSessionInViewFilterHibernate4());
-		
+
+		FilterRegistration.Dynamic hf = container.addFilter("hibernateFilter", new OpenSessionInViewFilterHibernate4());
+
 		hf.setInitParameter("encoding", "UTF-8");
 		hf.setInitParameter("forceEncoding", "true");
 		hf.setInitParameter("singleSession", "true");
 		hf.setInitParameter("sessionFactoryBeanName", "sessionFactory");
 		hf.addMappingForUrlPatterns(null, true, "/*");
-		
+
 		ServletRegistration.Dynamic dispatcher = container.addServlet("dispatcher", new FacesServlet());
-        dispatcher.setLoadOnStartup(1);
-        dispatcher.addMapping("*.xhtml");
+		dispatcher.setLoadOnStartup(1);
+		dispatcher.addMapping("*.xhtml");
 
 		ServletRegistration.Dynamic servlet = container.addServlet("DispatcherServlet", DispatcherServlet.class);
 		servlet.setInitParameter("contextConfigLocation", "");
