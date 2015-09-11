@@ -14,6 +14,6 @@ public class CompraRepositoryHibernate extends RepositoryBase implements CompraR
 	@Override
 	public void salva(Compra compra) {
 		this.hibernateTemplate.save(compra);
-	}
+	 }
 
 }
