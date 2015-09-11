@@ -10,4 +10,9 @@
 		<el-resolver>org.springframework.web.jsf.el.SpringBeanFacesELResolver
 		</el-resolver>
 	</application>
+	<managed-bean>
+		<managed-bean-name>controladorProduto</managed-bean-name>
+		<managed-bean-class>br.com.pat.mvc.controller.ControladorProduto</managed-bean-class>
+		<managed-bean-scope>session</managed-bean-scope>
+	</managed-bean>
 </faces-config>

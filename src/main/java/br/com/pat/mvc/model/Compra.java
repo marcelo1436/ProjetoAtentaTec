@@ -20,7 +20,7 @@ public class Compra implements Serializable {
 
 	private int idCompra;
 	private Date dataCompra;
-	private List<Produto> produto;
+	private List<Produto> listaProduto;
 	private Mercado mercado;
 
 	@Id
@@ -46,12 +46,12 @@ public class Compra implements Serializable {
 
 	@ManyToOne
 	@JoinColumn(name = "id_produto")
-	public List<Produto> getProduto() {
-		return produto;
+	public List<Produto> getListaProduto() {
+		return listaProduto;
 	}
 
-	public void setProduto(List<Produto> produto) {
-		this.produto = produto;
+	public void setListaProduto(List<Produto> listaProduto) {
+		this.listaProduto = listaProduto;
 	}
 
 	@OneToOne(cascade = CascadeType.ALL)
