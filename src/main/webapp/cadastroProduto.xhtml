@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+	<title>Cadastro de Produtos</title>
+	<h:outputStylesheet library="css" name="sistema.css" />
+</h:head>
+
+<h:body>
+	<header>
+	<div id="divHeader">Cadastro de Produtos</div>
+	</header>
+	<p:panelGrid columns="4" columnClasses="rotulo,campo">
+		<h:panelGroup>
+			<p:outputLabel value="Nome do Produto:" for="nomeproduto" />
+			<p:inputText id="nomeproduto" maxlength="80" size="40" />
+			<p:outputLabel value="tipo do Produto:" for="tipoproduto" />
+			<p:inputText id="tipoproduto" maxlength="50" size="40" />
+			<p:outputLabel value="marca do Produto:" for="marcaproduto" />
+			<p:inputText id="marcaproduto" maxlength="30" size="30" />
+			<p:outputLabel value="Valor do Produto:" for="valorproduto" />
+			<p:inputText id="valorproduto" maxlength="9" size="10" />
+			<p:outputLabel value="Data de Validade do Produto:"
+				for="datavalidade" />
+			<p:calendar id="datavalidade" showOn="button" />
+			<p:outputLabel value="Quantidade de Consumo:" for="quantidadeconsumo" />
+			<p:inputText id="quantidadeconsumo" maxlength="5" size="5" value="" />
+		</h:panelGroup>
+
+		<h:panelGroup>
+			<p:dataTable></p:dataTable>
+
+		</h:panelGroup>
+
+
+	</p:panelGrid>
+
+
+</h:body>
+</html>
