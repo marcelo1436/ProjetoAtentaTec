@@ -2,7 +2,6 @@ package br.com.pat.mvc.model;
 
 import java.io.Serializable;
 import java.util.Date;
-import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -10,7 +9,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
@@ -22,7 +21,7 @@ public class Compra implements Serializable {
 
 	private int idCompra;
 	private Date dataCompra;
-	private List<Produto> listaProduto;
+	private Produto produto;
 	private Mercado mercado;
 
 	@Id
@@ -47,13 +46,13 @@ public class Compra implements Serializable {
 		this.dataCompra = dataCompra;
 	}
 
-	@OneToMany(cascade = CascadeType.ALL, mappedBy = "compra")
-	public List<Produto> getListaProduto() {
-		return listaProduto;
+	@OneToOne(cascade = CascadeType.ALL)
+	public Produto getProduto() {
+		return produto;
 	}
 
-	public void setListaProduto(List<Produto> listaProduto) {
-		this.listaProduto = listaProduto;
+	public void setProduto(Produto produto) {
+		this.produto = produto;
 	}
 
 	@ManyToOne

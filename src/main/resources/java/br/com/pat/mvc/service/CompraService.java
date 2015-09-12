@@ -25,7 +25,7 @@ public class CompraService {
 	public void salva(Compra compra) {
 		validaCompra(compra);
 		compra.setDataCompra(new Date());
-		compra.setListaProduto(produtoRepository.getProdutos());
+		compra.setProduto(produtoRepository.getProduto());
 		compraRepository.salva(compra);
 	}
 

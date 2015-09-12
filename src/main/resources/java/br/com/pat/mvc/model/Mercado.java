@@ -1,14 +1,13 @@
 package br.com.pat.mvc.model;
 
 import java.io.Serializable;
-import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 import org.hibernate.annotations.GenericGenerator;
@@ -20,8 +19,8 @@ public class Mercado implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	private int idMercado;
-	private String nome;
-	private List<Compra> compra;
+	private String nomeMercado;
+	private Compra compra;
 
 	@Id
 	@GenericGenerator(name = "generator", strategy = "increment")
@@ -36,20 +35,20 @@ public class Mercado implements Serializable {
 	}
 
 	@Column(name = "nome_mercado")
-	public String getNome() {
-		return nome;
+	public String getNomeMercado() {
+		return nomeMercado;
 	}
 
-	public void setNome(String nome) {
-		this.nome = nome;
+	public void setNomeMercado(String nomeMercado) {
+		this.nomeMercado = nomeMercado;
 	}
 
-	@OneToMany(cascade = CascadeType.ALL, mappedBy = "mercado")
-	public List<Compra> getCompra() {
+	@OneToOne(cascade = CascadeType.ALL)
+	public Compra getCompra() {
 		return compra;
 	}
 
-	public void setCompra(List<Compra> compra) {
+	public void setCompra(Compra compra) {
 		this.compra = compra;
 	}
 

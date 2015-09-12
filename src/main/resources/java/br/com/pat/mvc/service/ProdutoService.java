@@ -1,7 +1,5 @@
 package br.com.pat.mvc.service;
 
-import java.util.List;
-
 import javax.annotation.Resource;
 
 import org.springframework.stereotype.Service;
@@ -22,8 +20,8 @@ public class ProdutoService {
 		produtoRepository.salva(produto);
 	}
 
-	public List<Produto> getProdutos() {
-		return produtoRepository.getProdutos();
+	public Produto getProduto() {
+		return produtoRepository.getProduto();
 	}
 
 	private void validaProduto(Produto produto) {
