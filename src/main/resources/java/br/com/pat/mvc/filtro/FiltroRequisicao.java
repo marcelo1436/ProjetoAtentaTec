@@ -33,7 +33,7 @@ public class FiltroRequisicao implements Filter {
 
 		String urlDeAcesso = req.getRequestURI();
 
-		if (urlDeAcesso.contains("/resources/") || urlDeAcesso.contains("/rest")) {
+		if (urlDeAcesso.contains("/resources/")) {
 			chain.doFilter(request, resp);
 			return;
 		}

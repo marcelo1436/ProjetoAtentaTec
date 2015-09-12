@@ -19,7 +19,7 @@ public class WebAppInitializer implements WebApplicationInitializer {
 	@Override
 	public void onStartup(ServletContext container) throws ServletException {
 		AnnotationConfigWebApplicationContext rootContext = new AnnotationConfigWebApplicationContext();
-		rootContext.getEnvironment().setDefaultProfiles("production");
+		rootContext.getEnvironment().setDefaultProfiles("Desenvolvimento");
 		rootContext.scan("br.com.pat.mvc");
 
 		container.addListener(new ContextLoaderListener(rootContext));

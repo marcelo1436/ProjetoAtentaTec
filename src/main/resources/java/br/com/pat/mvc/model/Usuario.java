@@ -13,14 +13,13 @@ import org.hibernate.annotations.GenericGenerator;
 public class Usuario {
 
 	private Long id;
-	private String email;
 	private String login;
 	private String senha;
 	private boolean ativo;
 
 	@Id
 	@GenericGenerator(name = "generator", strategy = "increment")
-	@Column(name = "usuario_id", nullable = false)
+	@Column(name = "id_usuario", nullable = false)
 	@GeneratedValue(generator = "generator")
 	public Long getId() {
 		return id;
@@ -30,16 +29,7 @@ public class Usuario {
 		this.id = id;
 	}
 
-	@Column(name = "text_email")
-	public String getEmail() {
-		return email;
-	}
-
-	public void setEmail(String email) {
-		this.email = email;
-	}
-
-	@Column(name = "text_senha", length = 12)
+	@Column(name = "senha", length = 12)
 	public String getSenha() {
 		return senha;
 	}
@@ -48,7 +38,7 @@ public class Usuario {
 		this.senha = senha;
 	}
 
-	@Column(name = "bool_ativo")
+	@Column(name = "ativo")
 	public boolean isAtivo() {
 		return ativo;
 	}
@@ -57,7 +47,7 @@ public class Usuario {
 		this.ativo = ativo;
 	}
 
-	@Column(name = "text_login")
+	@Column(name = "login")
 	public String getLogin() {
 		return login;
 	}

@@ -9,21 +9,21 @@ import br.com.pat.mvc.model.Usuario;
 
 @Component
 public class Autenticador {
-	
+
 	@Autowired
-	protected HttpServletRequest request;
-	
+	protected static HttpServletRequest request;
+
 	private static final String USUARIO_LOGADO = "UsuarioLogado";
-	
-	public void autenticaUsuarioNaSessao(Usuario usuario) {
+
+	public static void autenticaUsuarioNaSessao(Usuario usuario) {
 		request.getSession().setAttribute(USUARIO_LOGADO, usuario);
 	}
-	
-	public void getUsuarioNaSessao() {
-		request.getSession().getAttribute(USUARIO_LOGADO);
+
+	public static Usuario getUsuarioNaSessao() {
+		return (Usuario) request.getSession().getAttribute(USUARIO_LOGADO);
 	}
-	
-	public void removeUsuarioNaSessao() {
+
+	public static void removeUsuarioNaSessao() {
 		request.getSession().removeAttribute(USUARIO_LOGADO);
 	}
 

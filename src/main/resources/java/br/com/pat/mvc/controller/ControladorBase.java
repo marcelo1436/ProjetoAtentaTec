@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import br.com.pat.mvc.exeptions.ExcecaoInfraestrutura;
 import br.com.pat.mvc.exeptions.ExcecaoUsuarioNaoAutenticado;
 import br.com.pat.mvc.exeptions.MensagemDeErroExeption;
-import br.com.pat.mvc.model.Erro;
+import br.com.pat.mvc.util.JsfUtil;
 
 public class ControladorBase {
 
@@ -20,46 +20,30 @@ public class ControladorBase {
 
 	@ExceptionHandler(value = { ExcecaoUsuarioNaoAutenticado.class })
 	@ResponseStatus(value = HttpStatus.BAD_REQUEST)
-	public @ResponseBody Erro capturaExcecaoUsuarioNaoAutenticado(ExcecaoUsuarioNaoAutenticado ex, HttpServletRequest request) {
+	public @ResponseBody void capturaExcecaoUsuarioNaoAutenticado(ExcecaoUsuarioNaoAutenticado ex, HttpServletRequest request) {
 		ex.printStackTrace();
-
-		Erro erro = new Erro();
-		erro.setId(2);
-		erro.setMensagemDeErro(ex.getMessage());
-		return erro;
+		JsfUtil.addErrorMessageExcecao(ex, ex.getMessage());
 	}
 
 	@ExceptionHandler(value = { ExcecaoInfraestrutura.class })
 	@ResponseStatus(value = HttpStatus.BAD_REQUEST)
-	public @ResponseBody Erro capturaExcecaoInfraestrutura(ExcecaoInfraestrutura ex, HttpServletRequest request) {
+	public @ResponseBody void capturaExcecaoInfraestrutura(ExcecaoInfraestrutura ex, HttpServletRequest request) {
 		ex.printStackTrace();
-
-		Erro erro = new Erro();
-		erro.setId(1);
-		erro.setMensagemDeErro(ex.getMessage());
-		return erro;
+		JsfUtil.addErrorMessageExcecao(ex, ex.getMessage());
 	}
 
 	@ExceptionHandler(value = { MensagemDeErroExeption.class })
 	@ResponseStatus(value = HttpStatus.BAD_REQUEST)
-	public @ResponseBody Erro capturaExcecao(MensagemDeErroExeption ex, HttpServletRequest request) {
+	public @ResponseBody void capturaExcecao(MensagemDeErroExeption ex, HttpServletRequest request) {
 		ex.printStackTrace();
-
-		Erro erro = new Erro();
-		erro.setId(1);
-		erro.setMensagemDeErro(ex.getMessage());
-		return erro;
+		JsfUtil.addErrorMessageExcecao(ex, ex.getMessage());
 	}
 	
 	@ExceptionHandler(value = { RuntimeException.class })
 	@ResponseStatus(value = HttpStatus.BAD_REQUEST)
-	public @ResponseBody Erro capturaExcecaoRunTime(RuntimeException ex, HttpServletRequest request) {
+	public @ResponseBody void capturaExcecaoRunTime(RuntimeException ex, HttpServletRequest request) {
 		ex.printStackTrace();
-		
-		Erro erro = new Erro();
-		erro.setId(1);
-		erro.setMensagemDeErro(ex.getMessage());
-		return erro;
+		JsfUtil.addErrorMessageExcecao(ex, ex.getMessage());
 	}
 	
 	protected String getBaseUri() {
