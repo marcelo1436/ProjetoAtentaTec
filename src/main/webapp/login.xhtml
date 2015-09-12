@@ -4,17 +4,29 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:h="http://java.sun.com/jsf/html"
-	xmlns:ui="http://java.sun.com/jsf/facelets">
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
 
 <h:head>
 	<title>Template Da Tela Principal</title>
+	<h:outputStylesheet library="css" name="sistema.css" />
 </h:head>
 
 <h:body>
 	<h2>JSF 2.0 Hello World Example - hello.xhtml</h2>
 	<h:form>
-		<h:inputText value="#{controladorProduto.compra}"></h:inputText>
-		<h:commandButton value="Welcome Me"></h:commandButton>
+
+		<div>
+			<p:panelGrid columns="2" columnClasses="rotulo,campo">
+				<p:outputLabel value="Login" for="login" />
+				<p:inputText id="login" maxlength="50" size="30" />
+				<p:outputLabel value="Senha" for="senha" />
+				<p:password id="senha" maxlength="10" size="15" />
+
+			</p:panelGrid>
+
+		</div>
+
 	</h:form>
 </h:body>
 </html>
