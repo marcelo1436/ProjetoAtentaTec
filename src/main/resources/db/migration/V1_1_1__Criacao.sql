@@ -2,155 +2,95 @@ SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0;
 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0;
 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='TRADITIONAL,ALLOW_INVALID_DATES';
 
-CREATE TABLE IF NOT EXISTS `db_controle_servico`.`cliente` (
-  `cliente_id` INT(11) NOT NULL,
-  `text_nome` VARCHAR(200) NULL DEFAULT NULL,
-  `text_cpf_cnpj` VARCHAR(20) NULL DEFAULT NULL,
-  `text_rg` VARCHAR(45) NULL DEFAULT NULL,
-  `text_endereco` VARCHAR(100) NULL DEFAULT NULL,
-  `text_cep` VARCHAR(45) NULL DEFAULT NULL,
-  `text_estado` VARCHAR(45) NULL DEFAULT NULL,
-  `text_bairro` VARCHAR(45) NULL DEFAULT NULL,
-  `text_email` VARCHAR(200) NULL DEFAULT NULL,
-  `text_tipodepessoa` VARCHAR(10) NOT NULL,
-  `dataDeCadastro` DATETIME NULL DEFAULT NULL,
-  `dataDeAlteracao` DATETIME NOT NULL,
-  `dataDeNascimento` DATE NULL DEFAULT NULL,
-  `text_observacoes` VARCHAR(200) NULL DEFAULT NULL,
-  `text_telefone` VARCHAR(45) NULL DEFAULT NULL,
-  `text_celular` VARCHAR(45) NULL DEFAULT NULL,
-  PRIMARY KEY (`cliente_id`))
-ENGINE = InnoDB
-DEFAULT CHARACTER SET = utf8
-COLLATE = utf8_general_ci;
-
-CREATE TABLE IF NOT EXISTS `db_controle_servico`.`funcionario` (
-  `funcionario_id` INT(11) NOT NULL,
-  `text_nome` VARCHAR(200) NULL DEFAULT NULL,
-  `text_cpf` VARCHAR(11) NULL DEFAULT NULL,
-  `text_rg` VARCHAR(45) NULL DEFAULT NULL,
-  `text_endereco` VARCHAR(100) NULL DEFAULT NULL,
-  `text_cep` VARCHAR(45) NULL DEFAULT NULL,
-  `text_estado` VARCHAR(45) NULL DEFAULT NULL,
-  `text_bairro` VARCHAR(45) NULL DEFAULT NULL,
-  `text_email` VARCHAR(200) NULL DEFAULT NULL,
-  `dataDeCadastro` DATETIME NOT NULL,
-  `dataDeAlteracao` DATETIME NOT NULL,
-  `dataDeNascimento` DATE NULL DEFAULT NULL,
-  `text_observacoes` VARCHAR(300) NULL DEFAULT NULL,
-  `text_telefone` VARCHAR(45) NULL DEFAULT NULL,
-  `text_celular` VARCHAR(45) NULL DEFAULT NULL,
-  PRIMARY KEY (`funcionario_id`))
-ENGINE = InnoDB
-DEFAULT CHARACTER SET = utf8
-COLLATE = utf8_general_ci;
-
-CREATE TABLE IF NOT EXISTS `db_controle_servico`.`servico` (
-  `servico_id` INT(11) NOT NULL,
-  `doub_preco` DOUBLE NULL DEFAULT NULL,
-  `text_nome` VARCHAR(200) NULL DEFAULT NULL,
-  `text_descricao` VARCHAR(200) NULL DEFAULT NULL,
-  PRIMARY KEY (`servico_id`))
-ENGINE = InnoDB
-DEFAULT CHARACTER SET = utf8
-COLLATE = utf8_general_ci;
-
-CREATE TABLE IF NOT EXISTS `db_controle_servico`.`ordemDeServico` (
-  `ordemdeservico_id` INT(11) NOT NULL,
-  `funcionario_id` INT(11) NOT NULL,
-  `cliente_id` INT(11) NOT NULL,
-  `dataDeCadastro` DATETIME NOT NULL,
-  `dataDeAlteracao` DATETIME NOT NULL,
-  `dataDeAgendamento` DATETIME NULL DEFAULT NULL,
-  `dataDeExecucao` DATETIME NULL DEFAULT NULL,
-  PRIMARY KEY (`ordemdeservico_id`),
-  INDEX `fk_ordemDeServico_funcionario1_idx` (`funcionario_id` ASC),
-  INDEX `fk_ordemDeServico_cliente1_idx` (`cliente_id` ASC),
-  CONSTRAINT `fk_ordemDeServico_funcionario1`
-    FOREIGN KEY (`funcionario_id`)
-    REFERENCES `db_controle_servico`.`funcionario` (`funcionario_id`)
+CREATE TABLE IF NOT EXISTS `provaatentatec`.`compra` (
+  `id_compra` INT(11) NOT NULL,
+  `data_compra` DATE NULL DEFAULT NULL,
+  `id_mercado` INT(11) NOT NULL,
+  `id_produto` INT(11) NOT NULL,
+  PRIMARY KEY (`id_compra`),
+  INDEX `fk_compra_mercado_idx` (`id_mercado` ASC),
+  INDEX `fk_compra_produtos1_idx` (`id_produto` ASC),
+  CONSTRAINT `fk_compra_mercado`
+    FOREIGN KEY (`id_mercado`)
+    REFERENCES `provaatentatec`.`mercado` (`id_mercado`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
-  CONSTRAINT `fk_ordemDeServico_cliente1`
-    FOREIGN KEY (`cliente_id`)
-    REFERENCES `db_controle_servico`.`cliente` (`cliente_id`)
+  CONSTRAINT `fk_compra_produtos1`
+    FOREIGN KEY (`id_produto`)
+    REFERENCES `provaatentatec`.`produtos` (`id_produto`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB
 DEFAULT CHARACTER SET = utf8
 COLLATE = utf8_general_ci;
 
-CREATE TABLE IF NOT EXISTS `db_controle_servico`.`historicoOS` (
-  `historicoOS_id` INT(11) NOT NULL,
-  `dataDeCadastro` DATETIME NOT NULL,
-  `ordemDeServico_ordemdeservico_id` INT(11) NOT NULL,
-  PRIMARY KEY (`historicoOS_id`),
-  INDEX `fk_historicoOS_ordemDeServico1_idx` (`ordemDeServico_ordemdeservico_id` ASC),
-  CONSTRAINT `fk_historicoOS_ordemDeServico1`
-    FOREIGN KEY (`ordemDeServico_ordemdeservico_id`)
-    REFERENCES `db_controle_servico`.`ordemDeServico` (`ordemdeservico_id`)
+CREATE TABLE IF NOT EXISTS `provaatentatec`.`consumoproduto` (
+  `id_consumo` INT(11) NOT NULL,
+  `data_consumo` DATE NULL DEFAULT NULL,
+  `quantidade_consumo` INT(11) NULL DEFAULT NULL,
+  `id_produto` INT(11) NOT NULL,
+  PRIMARY KEY (`id_consumo`),
+  INDEX `fk_consumoproduto_produtos1_idx` (`id_produto` ASC),
+  CONSTRAINT `fk_consumoproduto_produtos1`
+    FOREIGN KEY (`id_produto`)
+    REFERENCES `provaatentatec`.`produtos` (`id_produto`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB
 DEFAULT CHARACTER SET = utf8
 COLLATE = utf8_general_ci;
 
-CREATE TABLE IF NOT EXISTS `db_controle_servico`.`funcionario_servico` (
-  `funcionario_id` INT(11) NOT NULL,
-  `servico_id` INT(11) NOT NULL,
-  INDEX `fk_funcionario_servico_funcionario1_idx` (`funcionario_id` ASC),
-  INDEX `fk_funcionario_servico_servico1_idx` (`servico_id` ASC),
-  CONSTRAINT `fk_funcionario_servico_funcionario1`
-    FOREIGN KEY (`funcionario_id`)
-    REFERENCES `db_controle_servico`.`funcionario` (`funcionario_id`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION,
-  CONSTRAINT `fk_funcionario_servico_servico1`
-    FOREIGN KEY (`servico_id`)
-    REFERENCES `db_controle_servico`.`servico` (`servico_id`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
+CREATE TABLE IF NOT EXISTS `provaatentatec`.`mercado` (
+  `id_mercado` INT(11) NOT NULL DEFAULT '0',
+  `nome_mercado` VARCHAR(80) NOT NULL,
+  PRIMARY KEY (`id_mercado`))
 ENGINE = InnoDB
 DEFAULT CHARACTER SET = utf8
 COLLATE = utf8_general_ci;
 
-CREATE TABLE IF NOT EXISTS `db_controle_servico`.`usuario` (
-  `usuario_id` INT(11) NOT NULL,
-  `text_email` VARCHAR(200) NOT NULL,
-  `text_senha` VARCHAR(12) NOT NULL,
-  `bool_ativo` TINYINT(4) NOT NULL DEFAULT 1,
-  `text_login` VARCHAR(200) NOT NULL,
-  PRIMARY KEY (`usuario_id`))
+CREATE TABLE IF NOT EXISTS `provaatentatec`.`produtos` (
+  `id_produto` INT(11) NOT NULL DEFAULT '0',
+  `nome_produto` VARCHAR(80) NULL DEFAULT NULL,
+  `tipo_produto` TINYINT(4) NULL DEFAULT NULL,
+  `marca_produto` VARCHAR(40) NULL DEFAULT NULL,
+  `valor_produto` DECIMAL(10,2) NULL DEFAULT NULL,
+  `dataValidade_produto` DATE NULL DEFAULT NULL,
+  `quantidade_produto` INT(11) NULL DEFAULT NULL,
+  PRIMARY KEY (`id_produto`))
 ENGINE = InnoDB
 DEFAULT CHARACTER SET = utf8
 COLLATE = utf8_general_ci;
 
-CREATE TABLE IF NOT EXISTS `db_controle_servico`.`ordemDeServico_servico` (
-  `servico_id` INT(11) NOT NULL,
-  `ordemdeservico_id` INT(11) NOT NULL,
-  INDEX `fk_ordemDeServico_servico_servico1_idx` (`servico_id` ASC),
-  INDEX `fk_ordemDeServico_servico_ordemDeServico1_idx` (`ordemdeservico_id` ASC),
-  CONSTRAINT `fk_ordemDeServico_servico_servico1`
-    FOREIGN KEY (`servico_id`)
-    REFERENCES `db_controle_servico`.`servico` (`servico_id`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION,
-  CONSTRAINT `fk_ordemDeServico_servico_ordemDeServico1`
-    FOREIGN KEY (`ordemdeservico_id`)
-    REFERENCES `db_controle_servico`.`ordemDeServico` (`ordemdeservico_id`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
+CREATE TABLE IF NOT EXISTS `provaatentatec`.`schema_version` (
+  `version_rank` INT(11) NOT NULL,
+  `installed_rank` INT(11) NOT NULL,
+  `version` VARCHAR(50) NOT NULL,
+  `description` VARCHAR(200) NOT NULL,
+  `type` VARCHAR(20) NOT NULL,
+  `script` VARCHAR(1000) NOT NULL,
+  `checksum` INT(11) NULL DEFAULT NULL,
+  `installed_by` VARCHAR(100) NOT NULL,
+  `installed_on` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `execution_time` INT(11) NOT NULL,
+  `success` TINYINT(1) NOT NULL,
+  PRIMARY KEY (`version`),
+  INDEX `schema_version_vr_idx` (`version_rank` ASC),
+  INDEX `schema_version_ir_idx` (`installed_rank` ASC),
+  INDEX `schema_version_s_idx` (`success` ASC))
 ENGINE = InnoDB
 DEFAULT CHARACTER SET = utf8
 COLLATE = utf8_general_ci;
 
-
-INSERT INTO `provaatentatec`.`usuario` (`usuario_id`, `text_email`, `text_login`, `text_senha`, `bool_ativo`) VALUES ('1', 'bruno-smv2@hotmail.com', 'admin', '1', '1');
-
---SET FOREIGN_KEY_CHECKS = 0;
---SET FOREIGN_KEY_CHECKS = 1;
+CREATE TABLE IF NOT EXISTS `provaatentatec`.`usuario` (
+  `id_usuario` INT(11) NOT NULL,
+  `login` VARCHAR(80) NOT NULL,
+  `senha` VARCHAR(30) NOT NULL,
+  `ativo` TINYINT(4) NULL DEFAULT NULL,
+  PRIMARY KEY (`id_usuario`))
+ENGINE = InnoDB
+DEFAULT CHARACTER SET = utf8
+COLLATE = utf8_general_ci;
 
 SET SQL_MODE=@OLD_SQL_MODE;
 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
-
