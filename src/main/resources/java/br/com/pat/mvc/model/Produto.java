@@ -103,7 +103,8 @@ public class Produto implements Serializable {
 		this.quantidadeProduto = quantidadeProduto;
 	}
 
-	@OneToMany(cascade = CascadeType.ALL, mappedBy = "compra")
+	@ManyToOne
+	@JoinColumn(name = "id_compra")
 	public Compra getCompra() {
 		return compra;
 	}
@@ -112,8 +113,7 @@ public class Produto implements Serializable {
 		this.compra = compra;
 	}
 
-	@ManyToOne
-	@JoinColumn(name = "id_consumo")
+	@OneToMany(cascade = CascadeType.ALL, mappedBy = "produto")
 	public List<ConsumoProduto> getConsumo() {
 		return consumo;
 	}

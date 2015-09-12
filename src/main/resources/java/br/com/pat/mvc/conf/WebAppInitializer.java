@@ -39,12 +39,12 @@ public class WebAppInitializer implements WebApplicationInitializer {
 		hf.addMappingForUrlPatterns(null, true, "/*");
 
 		ServletRegistration.Dynamic dispatcher = container.addServlet("dispatcher", new FacesServlet());
-		dispatcher.setLoadOnStartup(1);
+		dispatcher.setLoadOnStartup(2);
 		dispatcher.addMapping("*.xhtml");
 
 		ServletRegistration.Dynamic servlet = container.addServlet("DispatcherServlet", DispatcherServlet.class);
 		servlet.setInitParameter("contextConfigLocation", "");
-		servlet.setLoadOnStartup(2);
+		servlet.setLoadOnStartup(1);
 		servlet.addMapping("/");
 	}
 

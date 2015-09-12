@@ -46,10 +46,10 @@ public class HibernateConfiguration {
 	public SessionFactory getSessionFactory() throws Exception {
 		Properties properties = new Properties();
 		properties.put("hibernate.dialect", env.getProperty("jdbc.dialect"));
-		properties.put("hibernate.show_sql",env.getProperty("hibernate.show_sql"));
+		properties.put("hibernate.show_sql", env.getProperty("hibernate.show_sql"));
 		properties.put("current_session_context_class", "thread");
 		LocalSessionFactoryBean factory = new LocalSessionFactoryBean();
-		factory.setPackagesToScan(new String[] { "br.com.pat.mvc.model" });
+		factory.setPackagesToScan(new String[] { "br.com.cs.mvc.model" });
 		factory.setDataSource(getDataSource());
 		factory.setHibernateProperties(properties);
 		factory.afterPropertiesSet();

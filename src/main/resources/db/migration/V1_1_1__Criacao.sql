@@ -145,7 +145,7 @@ DEFAULT CHARACTER SET = utf8
 COLLATE = utf8_general_ci;
 
 
-INSERT INTO `db_controle_servico`.`usuario` (`usuario_id`, `text_email`, `text_login`, `text_senha`, `bool_ativo`) VALUES ('1', 'bruno-smv2@hotmail.com', 'admin', '1', '1');
+INSERT INTO `provaatentatec`.`usuario` (`usuario_id`, `text_email`, `text_login`, `text_senha`, `bool_ativo`) VALUES ('1', 'bruno-smv2@hotmail.com', 'admin', '1', '1');
 
 --SET FOREIGN_KEY_CHECKS = 0;
 --SET FOREIGN_KEY_CHECKS = 1;

@@ -10,7 +10,9 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToOne;
+import javax.persistence.OneToMany;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 import org.hibernate.annotations.GenericGenerator;
 
@@ -35,7 +37,8 @@ public class Compra implements Serializable {
 		this.idCompra = idCompra;
 	}
 
-	@Column(name = "")
+	@Temporal(TemporalType.DATE)
+	@Column(name = "data_compra")
 	public Date getDataCompra() {
 		return dataCompra;
 	}
@@ -44,8 +47,7 @@ public class Compra implements Serializable {
 		this.dataCompra = dataCompra;
 	}
 
-	@ManyToOne
-	@JoinColumn(name = "id_produto")
+	@OneToMany(cascade = CascadeType.ALL, mappedBy = "compra")
 	public List<Produto> getListaProduto() {
 		return listaProduto;
 	}
@@ -54,7 +56,8 @@ public class Compra implements Serializable {
 		this.listaProduto = listaProduto;
 	}
 
-	@OneToOne(cascade = CascadeType.ALL)
+	@ManyToOne
+	@JoinColumn(name = "id_mercado")
 	public Mercado getMercado() {
 		return mercado;
 	}

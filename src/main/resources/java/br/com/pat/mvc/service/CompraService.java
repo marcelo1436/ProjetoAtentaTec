@@ -10,25 +10,26 @@ import org.springframework.stereotype.Service;
 
 import br.com.pat.mvc.exeptions.MensagemDeErroExeption;
 import br.com.pat.mvc.model.Compra;
-import br.com.pat.mvc.model.Produto;
+import br.com.pat.mvc.repositories.CompraRepository;
+import br.com.pat.mvc.repositories.ProdutoRepository;
 
 @Service
 public class CompraService {
 
 	@Resource(name = "compraRepository")
-	public CompraService compraRepository;
+	public CompraRepository compraRepository;
 
 	@Autowired
-	public ProdutoService produtoService;
+	public ProdutoRepository produtoRepository;
 
 	public void salva(Compra compra) {
 		validaCompra(compra);
 		compra.setDataCompra(new Date());
-		compra.setListaProduto(produtoService.getProdutos());
+		compra.setListaProduto(produtoRepository.getProdutos());
 		compraRepository.salva(compra);
 	}
 
-	public List<Produto> getCompras() {
+	public List<Compra> getCompras() {
 		return compraRepository.getCompras();
 	}
 

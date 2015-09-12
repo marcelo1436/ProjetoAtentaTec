@@ -16,7 +16,6 @@ import org.springframework.stereotype.Component;
 
 import br.com.pat.mvc.model.Usuario;
 
-//@WebFilter("/*")
 @Component
 public class FiltroRequisicao implements Filter {
 
@@ -27,16 +26,14 @@ public class FiltroRequisicao implements Filter {
 	}
 
 	@Override
-	public void doFilter(ServletRequest request,
-			ServletResponse servletResponse, FilterChain chain)
+	public void doFilter(ServletRequest request, ServletResponse servletResponse, FilterChain chain)
 			throws IOException, ServletException {
 		HttpServletRequest req = (HttpServletRequest) request;
 		HttpServletResponse resp = (HttpServletResponse) servletResponse;
 
 		String urlDeAcesso = req.getRequestURI();
 
-		if (urlDeAcesso.contains("/resources/")
-				|| urlDeAcesso.contains("/rest")) {
+		if (urlDeAcesso.contains("/resources/") || urlDeAcesso.contains("/rest")) {
 			chain.doFilter(request, resp);
 			return;
 		}
