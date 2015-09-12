@@ -1,3 +1,4 @@
+
 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0;
 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0;
 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='TRADITIONAL,ALLOW_INVALID_DATES';
@@ -27,7 +28,7 @@ COLLATE = utf8_general_ci;
 CREATE TABLE IF NOT EXISTS `provaatentatec`.`consumoproduto` (
   `id_consumo` INT(11) NOT NULL,
   `data_consumo` DATE NULL DEFAULT NULL,
-  `quantidade_consumo` INT(11) NULL DEFAULT NULL,
+  `quantidade` INT(11) NULL DEFAULT NULL,
   `id_produto` INT(11) NOT NULL,
   PRIMARY KEY (`id_consumo`),
   INDEX `fk_consumoproduto_produtos1_idx` (`id_produto` ASC),
@@ -90,6 +91,7 @@ CREATE TABLE IF NOT EXISTS `provaatentatec`.`usuario` (
 ENGINE = InnoDB
 DEFAULT CHARACTER SET = utf8
 COLLATE = utf8_general_ci;
+
 
 SET SQL_MODE=@OLD_SQL_MODE;
 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;

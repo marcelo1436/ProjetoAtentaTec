@@ -20,7 +20,7 @@ public class ConsumoProduto implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	private int idConsumo;
-	private Integer quantidadeProduto;
+	private Integer quantidade;
 	private Produto produto;
 	private Date dataConsumo;
 
@@ -36,16 +36,17 @@ public class ConsumoProduto implements Serializable {
 		this.idConsumo = idConsumo;
 	}
 
-	public Integer getQuantidadeProduto() {
-		return quantidadeProduto;
+	@Column(name = "quantidade")
+	public Integer getQuantidade() {
+		return quantidade;
 	}
 
-	public void setQuantidadeProduto(Integer quantidadeProduto) {
-		this.quantidadeProduto = quantidadeProduto;
+	public void setQuantidade(Integer quantidade) {
+		this.quantidade = quantidade;
 	}
 
 	@ManyToOne
-	@JoinColumn(name = "id_consumo")
+	@JoinColumn(name = "id_produto")
 	public Produto getProduto() {
 		return produto;
 	}
