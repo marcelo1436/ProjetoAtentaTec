@@ -4,7 +4,6 @@ import javax.annotation.Resource;
 
 import org.springframework.stereotype.Service;
 
-import br.com.pat.mvc.exeptions.ExcecaoUsuarioNaoAutenticado;
 import br.com.pat.mvc.infra.Autenticador;
 import br.com.pat.mvc.model.Usuario;
 import br.com.pat.mvc.repositories.UsuarioRepository;
@@ -18,7 +17,7 @@ public class UsuarioService {
 	public Usuario autenticaUsuario(Usuario usuario) {
 		Usuario usuarioAutenticado = usuarioRepository.getUsuarioPeloLoginESenha(usuario);
 		if (usuarioAutenticado == null) {
-			throw new ExcecaoUsuarioNaoAutenticado("Login ou Senha inválido");
+			return usuario;
 		} else {
 			Autenticador.autenticaUsuarioNaSessao(usuarioAutenticado);
 			return usuarioAutenticado;

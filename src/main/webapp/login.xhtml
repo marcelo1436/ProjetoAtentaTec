@@ -8,23 +8,24 @@
 	xmlns:p="http://primefaces.org/ui">
 
 <h:head>
-	<title>Template Da Tela Principal</title>
+	<title>Login</title>
 	<h:outputStylesheet library="css" name="sistema.css" />
 </h:head>
 
 <h:body>
-	<h2>JSF 2.0 Hello World Example - hello.xhtml</h2>
+	<h2>Bem vindo</h2>
 	<h:form>
-
 		<div>
+			<p:growl id="growl" showDetail="true" sticky="true" />  
+			
 			<p:panelGrid columns="2" columnClasses="rotulo,campo">
 				<p:outputLabel value="Login" for="login" />
-				<p:inputText id="login" maxlength="50" size="30" />
+				<p:inputText id="login" maxlength="50" size="30" value="#{controladorAutenticacao.usuario.login}"/>
 				<p:outputLabel value="Senha" for="senha" />
-				<p:password id="senha" maxlength="10" size="15" />
-
+				<p:password id="senha" maxlength="12" size="15" value="#{controladorAutenticacao.usuario.senha}"/>
+				<p:commandButton value="Enviar" action="#{controladorAutenticacao.logar()}" update="growl">
+				</p:commandButton>
 			</p:panelGrid>
-
 		</div>
 
 	</h:form>

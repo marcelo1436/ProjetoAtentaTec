@@ -1,17 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <faces-config version="2.2" xmlns="http://xmlns.jcp.org/xml/ns/javaee"
-	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-facesconfig_2_2.xsd">
-
-	<application>
-		<action-listener>org.primefaces.application.DialogActionListener</action-listener>
-		<navigation-handler>org.primefaces.application.DialogNavigationHandler</navigation-handler>
-		<view-handler>org.primefaces.application.DialogViewHandler</view-handler>
-		<el-resolver>org.springframework.web.jsf.el.SpringBeanFacesELResolver</el-resolver>
-	</application>
-	<managed-bean>
-		<managed-bean-name>controladorProduto</managed-bean-name>
-		<managed-bean-class>br.com.pat.mvc.controller.ControladorProduto</managed-bean-class>
-		<managed-bean-scope>session</managed-bean-scope>
-	</managed-bean>
+ xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-facesconfig_2_2.xsd">
+ <managed-bean>
+  <managed-bean-name>controladorProduto</managed-bean-name>
+  <managed-bean-class>br.com.pat.mvc.controller.ControladorProduto</managed-bean-class>
+  <managed-bean-scope>session</managed-bean-scope>
+ </managed-bean>
+ <managed-bean>
+  <managed-bean-name>controladorAutenticacao</managed-bean-name>
+  <managed-bean-class>br.com.pat.mvc.controller.ControladorAutenticacao</managed-bean-class>
+  <managed-bean-scope>session</managed-bean-scope>
+ </managed-bean>
+ <application>
+  <action-listener>org.primefaces.application.DialogActionListener</action-listener>
+  <navigation-handler>org.primefaces.application.DialogNavigationHandler</navigation-handler>
+  <view-handler>org.primefaces.application.DialogViewHandler</view-handler>
+  <el-resolver>org.springframework.web.jsf.el.SpringBeanFacesELResolver</el-resolver>
+ </application>
+ <factory>
+  <exception-handler-factory>br.com.pat.mvc.exeptions.CustomExceptionHandlerFactory</exception-handler-factory>
+ </factory>
 </faces-config>

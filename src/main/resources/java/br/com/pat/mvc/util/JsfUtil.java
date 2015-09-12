@@ -1,46 +1,124 @@
 package br.com.pat.mvc.util;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collection;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import javax.faces.application.FacesMessage;
+import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
+import javax.faces.convert.Converter;
+import javax.faces.model.SelectItem;
 
 public class JsfUtil {
-	public static void addErrorMessageExcecao(Exception ex, String defaultMsg) {
-		String msg = ex.getLocalizedMessage();
 
-		if ((msg != null) && (msg.length() > 0)) {
-			addErrorMessage(null, msg);
+	public static SelectItem[] getSelectItems(List<?> entities,
+			boolean selectOne) {
+		int size = selectOne ? entities.size() + 1 : entities.size();
+		SelectItem[] items = new SelectItem[size];
+		int i = 0;
+		if (selectOne) {
+			items[0] = new SelectItem("", "---");
+			i++;
+		}
+		for (Object x : entities) {
+			items[i++] = new SelectItem(x, x.toString());
+		}
+		return items;
+	}
+
+	public static void ensureAddErrorMessage(Exception ex, String defaultMsg) {
+		String msg = ex.getLocalizedMessage();
+		if (msg != null && msg.length() > 0) {
+			addErrorMessage(msg);
 		} else {
-			addErrorMessage(null, defaultMsg);
+			addErrorMessage(defaultMsg);
 		}
 	}
 
 	public static void addErrorMessages(List<String> messages) {
 		for (String message : messages) {
-			addErrorMessage(null, message);
+			addErrorMessage(message);
 		}
 	}
 
-	public static void addErrorMessage(String idComponente, String msg) {
-		FacesMessage facesMsg = new FacesMessage(FacesMessage.SEVERITY_ERROR, msg, msg);
-		FacesContext.getCurrentInstance().addMessage(idComponente, facesMsg);
+	public static void addErrorMessage(String msg) {
+		FacesMessage facesMsg = new FacesMessage(FacesMessage.SEVERITY_ERROR,
+				msg, msg);
+		FacesContext.getCurrentInstance().addMessage(null, facesMsg);
 	}
 
-	public static void addSuccessMessage(String idComponente, String msg) {
-		FacesMessage facesMsg = new FacesMessage(FacesMessage.SEVERITY_INFO, msg, msg);
-		FacesContext.getCurrentInstance().addMessage("idComponente", facesMsg);
+	public static void addSuccessMessage(String msg) {
+		FacesMessage facesMsg = new FacesMessage(FacesMessage.SEVERITY_INFO,
+				msg, msg);
+		FacesContext.getCurrentInstance().addMessage("successInfo", facesMsg);
+	}
+
+	public static Object getObjectFromRequestParameter(
+			String requestParameterName, Converter converter,
+			UIComponent component) {
+		String theId = JsfUtil.getRequestParameter(requestParameterName);
+		return converter.getAsObject(FacesContext.getCurrentInstance(),
+				component, theId);
+	}
+
+	public static <T> List<T> arrayToList(T[] arr) {
+		if (arr == null) {
+			return new ArrayList<T>();
+		}
+		return Arrays.asList(arr);
+	}
+
+	@SuppressWarnings({ "unchecked", "rawtypes" })
+	public static <T> Set<T> arrayToSet(T[] arr) {
+		if (arr == null) {
+			return new HashSet<T>();
+		}
+		return new HashSet(Arrays.asList(arr));
+	}
+
+	public static Object[] collectionToArray(Collection<?> c) {
+		if (c == null) {
+			return new Object[0];
+		}
+		return c.toArray();
+	}
+
+	public static <T> List<T> setToList(Set<T> set) {
+		return new ArrayList<T>(set);
+	}
+
+	public static String getCollectionAsString(Collection<?> collection) {
+		if (collection == null || collection.size() == 0) {
+			return "(No Items)";
+		}
+		StringBuffer sb = new StringBuffer();
+		int i = 0;
+		for (Object item : collection) {
+			if (i > 0) {
+				sb.append("<br />");
+			}
+			sb.append(item);
+			i++;
+		}
+		return sb.toString();
 	}
 
 	public static String getRequestParameter(String key) {
-		return FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap().get(key);
+		return FacesContext.getCurrentInstance().getExternalContext()
+				.getRequestParameterMap().get(key);
 	}
 
 	public static void setAttribute(String valorObjeto, Object tipoObjeto) {
-		FacesContext.getCurrentInstance().getExternalContext().getRequestMap().put(valorObjeto, tipoObjeto);
+		FacesContext.getCurrentInstance().getExternalContext().getRequestMap()
+				.put(valorObjeto, tipoObjeto);
 	}
 
 	public static Object getAttribute(String valorObjeto) {
-		return FacesContext.getCurrentInstance().getExternalContext().getRequestMap().get(valorObjeto);
+		return FacesContext.getCurrentInstance().getExternalContext()
+				.getRequestMap().get(valorObjeto);
 	}
 }

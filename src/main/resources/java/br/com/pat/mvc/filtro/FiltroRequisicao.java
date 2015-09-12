@@ -32,8 +32,8 @@ public class FiltroRequisicao implements Filter {
 		HttpServletResponse resp = (HttpServletResponse) servletResponse;
 
 		String urlDeAcesso = req.getRequestURI();
-
-		if (urlDeAcesso.contains("/resources/")) {
+		
+		if (urlDeAcesso.contains("/resources/") || urlDeAcesso.contains("javax.faces.resource")) {
 			chain.doFilter(request, resp);
 			return;
 		}
