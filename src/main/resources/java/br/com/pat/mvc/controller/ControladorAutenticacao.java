@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 
+import br.com.pat.mvc.infra.Autenticador;
 import br.com.pat.mvc.model.Usuario;
 import br.com.pat.mvc.service.UsuarioService;
 import br.com.pat.mvc.util.UtilMensagens;
@@ -30,6 +31,11 @@ public class ControladorAutenticacao {
 		} else {
 			return "cadastroProduto.xhtml";
 		}
+	}
+
+	public String logout() {
+		Autenticador.removeUsuarioNaSessao();
+		return "login.xhtml";
 	}
 
 	public Usuario getUsuario() {

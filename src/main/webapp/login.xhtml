@@ -23,8 +23,7 @@
 				<p:inputText id="login" maxlength="50" size="30" value="#{controladorAutenticacao.usuario.login}"/>
 				<p:outputLabel value="Senha" for="senha" />
 				<p:password id="senha" maxlength="12" size="15" value="#{controladorAutenticacao.usuario.senha}"/>
-				<p:commandButton value="Enviar"
-					action="#{controladorAutenticacao.logar()}" update="growl">
+				<p:commandButton value="Enviar" action="#{controladorAutenticacao.logar()}" update="growl">
 				</p:commandButton>
 			</p:panelGrid>
 		</div>
