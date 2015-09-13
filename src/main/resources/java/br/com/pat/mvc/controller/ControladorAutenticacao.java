@@ -28,7 +28,7 @@ public class ControladorAutenticacao {
 			usuario = new Usuario();
 			return "login.xhtml";
 		} else {
-			return "/cadastroProduto.xhtml";
+			return "cadastroProduto.xhtml";
 		}
 	}
 
