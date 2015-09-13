@@ -16,15 +16,15 @@ CREATE TABLE IF NOT EXISTS `provaatentatec`.`compra` (
   `id_produto` INT(11) NOT NULL,
   PRIMARY KEY (`id_compra`),
   INDEX `fk_compra_mercado_idx` (`id_mercado` ASC),
-  INDEX `fk_compra_produtos1_idx` (`id_produto` ASC),
+  INDEX `fk_compra_produto1_idx` (`id_produto` ASC),
   CONSTRAINT `fk_compra_mercado`
     FOREIGN KEY (`id_mercado`)
     REFERENCES `provaatentatec`.`mercado` (`id_mercado`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
-  CONSTRAINT `fk_compra_produtos1`
+  CONSTRAINT `fk_compra_produto1`
     FOREIGN KEY (`id_produto`)
-    REFERENCES `provaatentatec`.`produtos` (`id_produto`)
+    REFERENCES `provaatentatec`.`produto` (`id_produto`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB
@@ -37,10 +37,10 @@ CREATE TABLE IF NOT EXISTS `provaatentatec`.`consumoproduto` (
   `quantidade` INT(11) NULL DEFAULT NULL,
   `id_produto` INT(11) NOT NULL,
   PRIMARY KEY (`id_consumo`),
-  INDEX `fk_consumoproduto_produtos1_idx` (`id_produto` ASC),
-  CONSTRAINT `fk_consumoproduto_produtos1`
+  INDEX `fk_consumoproduto_produto1_idx` (`id_produto` ASC),
+  CONSTRAINT `fk_consumoproduto_produto1`
     FOREIGN KEY (`id_produto`)
-    REFERENCES `provaatentatec`.`produtos` (`id_produto`)
+    REFERENCES `provaatentatec`.`produto` (`id_produto`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB
@@ -55,7 +55,7 @@ ENGINE = InnoDB
 DEFAULT CHARACTER SET = utf8
 COLLATE = utf8_general_ci;
 
-CREATE TABLE IF NOT EXISTS `provaatentatec`.`produtos` (
+CREATE TABLE IF NOT EXISTS `provaatentatec`.`produto` (
   `id_produto` INT(11) NOT NULL DEFAULT '0',
   `nome_produto` VARCHAR(80) NULL DEFAULT NULL,
   `tipo_produto` TINYINT(4) NULL DEFAULT NULL,

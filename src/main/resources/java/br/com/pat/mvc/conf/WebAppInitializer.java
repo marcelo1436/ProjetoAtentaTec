@@ -34,8 +34,9 @@ public class WebAppInitializer implements WebApplicationInitializer {
 
 		hf.setInitParameter("encoding", "UTF-8");
 		hf.setInitParameter("forceEncoding", "true");
-		hf.setInitParameter("singleSession", "true");
+		hf.setInitParameter("singleSession", "false");
 		hf.setInitParameter("sessionFactoryBeanName", "sessionFactory");
+		hf.setInitParameter("flushMode", "COMMIT/AUTO");
 		hf.addMappingForUrlPatterns(null, true, "/*");
 
 		ServletRegistration.Dynamic dispatcher = container.addServlet("dispatcher", new FacesServlet());
