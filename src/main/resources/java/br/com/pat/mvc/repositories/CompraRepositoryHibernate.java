@@ -9,12 +9,12 @@ public class CompraRepositoryHibernate extends RepositoryBase implements CompraR
 
 	@Override
 	public Compra getCompra() {
-		return this.hibernateTemplate.get(Compra.class, null);
+		return getHibernateTemplate().get(Compra.class, null);
 	}
 
 	@Override
 	public Compra salva(Compra compra) {
-		return (Compra) hibernateTemplate.save(compra);
+		return (Compra) getHibernateTemplate().save(compra);
 	}
 
 }

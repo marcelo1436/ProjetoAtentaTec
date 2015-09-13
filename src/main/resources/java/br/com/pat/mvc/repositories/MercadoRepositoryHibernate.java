@@ -9,12 +9,12 @@ public class MercadoRepositoryHibernate extends RepositoryBase implements Mercad
 
 	@Override
 	public Mercado getMercado() {
-		return this.hibernateTemplate.get(Mercado.class, null);
+		return getHibernateTemplate().get(Mercado.class, null);
 	}
 
 	@Override
 	public Mercado salva(Mercado mercado) {
-		return (Mercado) hibernateTemplate.save(mercado);
+		return (Mercado) getHibernateTemplate().save(mercado);
 
 	}
 

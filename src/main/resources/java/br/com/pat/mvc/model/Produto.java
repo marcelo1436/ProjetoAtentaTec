@@ -14,6 +14,7 @@ import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.transaction.Transactional;
 
 import org.hibernate.annotations.GenericGenerator;
 
@@ -119,6 +120,7 @@ public class Produto implements Serializable {
 	}
 
 	@Override
+	@Transactional
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
@@ -127,6 +129,7 @@ public class Produto implements Serializable {
 	}
 
 	@Override
+	@Transactional
 	public boolean equals(Object obj) {
 		if (this == obj)
 			return true;

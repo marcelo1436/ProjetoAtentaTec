@@ -4,6 +4,7 @@ import java.util.Properties;
 
 import javax.sql.DataSource;
 
+import org.hibernate.FlushMode;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
@@ -38,6 +39,7 @@ public class HibernateConfiguration {
 	@Bean
 	public HibernateTemplate getHibernateTemplate(SessionFactory sessionFactory) {
 		HibernateTemplate hibernateTemplate = new HibernateTemplate(sessionFactory);
+//		hibernateTemplate.getSessionFactory().getCurrentSession().setFlushMode(FlushMode.AUTO);
 		SpringContext.setTemplate(hibernateTemplate);
 		return hibernateTemplate;
 	}
