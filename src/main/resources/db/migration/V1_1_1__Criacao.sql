@@ -1,3 +1,9 @@
+-- MySQL Workbench Synchronization
+-- Generated: 2015-09-13 13:38
+-- Model: New Model
+-- Version: 1.0
+-- Project: Name of the project
+-- Author: Usuario
 
 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0;
 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0;
@@ -96,3 +102,5 @@ COLLATE = utf8_general_ci;
 SET SQL_MODE=@OLD_SQL_MODE;
 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
+
+INSERT INTO `provaatentatec`.`usuario` (`id_usuario`, `login`, `senha`, `ativo`) VALUES ('1', 'admin', '1', '1');
