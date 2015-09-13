@@ -15,6 +15,9 @@
 <h:body>
 	<header>
 	<div id="divHeader">CADASTRO DE PRODUTOS</div>
+	<div align="right">
+		<p:commandButton value="Logout" />
+	</div>
 	</header>
 
 	<p:growl id="growl" showDetail="true" sticky="true" />
@@ -30,6 +33,12 @@
 				style="margin-right:5px; margin-left:5px" />
 		</f:facet>
 	</p:toolbar>
+
+
+	<p:dataTable id="tableProdutos" editable="true"
+		emptyMessage="Nenhum produto encontrado." rows="20" paginator="true"
+		paginatorAlwaysVisible="false" paginatorPosition="bottom">
+	</p:dataTable>
 
 	<p:panelGrid columns="4" columnClasses="rotulo,campo,rotulo,campo">
 
@@ -60,11 +69,6 @@
 
 
 	</p:panelGrid>
-	<p:dataTable id="tableProdutos" editable="true"
-		emptyMessage="Nenhum produto encontrado." rows="20" paginator="true"
-		paginatorAlwaysVisible="false" paginatorPosition="bottom">
 
-
-	</p:dataTable>
 </h:body>
 </html>
