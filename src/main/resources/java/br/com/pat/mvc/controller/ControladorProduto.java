@@ -1,5 +1,7 @@
 package br.com.pat.mvc.controller;
 
+import javax.faces.event.ActionEvent;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
@@ -34,20 +36,26 @@ public class ControladorProduto {
 	public MercadoService mercadoService;
 
 	public ControladorProduto() {
-
 		produto = new Produto();
 		compra = new Compra();
 		consumo = new ConsumoProduto();
 		mercado = new Mercado();
-
 	}
 
 	public void salvar() {
-
 		produto = produtoService.salva(produto);
 		compra = compraService.salva(compra);
 		mercado = mercadoService.salva(mercado);
 		UtilMensagens.setMsgInfo("Produto Salvo com Sucesso!");
+	}
+	public void novoProduto(ActionEvent actionEvent) {
+		produto = new Produto();
+		compra = new Compra();
+		mercado = new Mercado();
+	}
+
+	public void exportXml() {
+		//TODO exportar xml
 	}
 
 	public Produto getProduto() {
@@ -76,10 +84,6 @@ public class ControladorProduto {
 
 	public Mercado getMercado() {
 		return mercado;
-	}
-
-	public void setMercado(Mercado mercado) {
-		this.mercado = mercado;
 	}
 
 }

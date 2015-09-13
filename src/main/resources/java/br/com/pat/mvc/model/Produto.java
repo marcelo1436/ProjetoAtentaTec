@@ -14,7 +14,6 @@ import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
-import javax.validation.constraints.NotNull;
 
 import org.hibernate.annotations.GenericGenerator;
 
@@ -73,7 +72,6 @@ public class Produto implements Serializable {
 		this.marcaProduto = marcaProduto;
 	}
 
-	@NotNull
 	@Column(name = "valor_produto")
 	public Integer getValorProduto() {
 		return valorProduto;
