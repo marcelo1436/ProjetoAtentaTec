@@ -13,7 +13,7 @@ public class UsuarioService {
 
 	@Resource(name = "usuarioRepository")
 	public UsuarioRepository usuarioRepository;
-
+	
 	public Usuario autenticaUsuario(Usuario usuario) {
 		Usuario usuarioAutenticado = usuarioRepository.getUsuarioPeloLoginESenha(usuario);
 		if (usuarioAutenticado == null) {
