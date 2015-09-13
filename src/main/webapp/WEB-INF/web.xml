@@ -5,4 +5,9 @@
 	version="3.0">
 	<display-name>ProvaAtentaTec</display-name>
 
+	<context-param>
+		<param-name>primefaces.THEME</param-name>
+		<param-value>start</param-value>
+	</context-param>
+
 </web-app>

@@ -6,6 +6,6 @@ public interface ProdutoRepository {
 
 	public Produto getProduto();
 
-	public void salva(Produto produto);
+	public Produto salva(Produto produto);
 
 }

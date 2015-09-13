@@ -6,20 +6,49 @@ import org.springframework.stereotype.Controller;
 
 import br.com.pat.mvc.model.Compra;
 import br.com.pat.mvc.model.ConsumoProduto;
+import br.com.pat.mvc.model.Mercado;
 import br.com.pat.mvc.model.Produto;
+import br.com.pat.mvc.service.CompraService;
+import br.com.pat.mvc.service.MercadoService;
+import br.com.pat.mvc.service.ProdutoService;
+import br.com.pat.mvc.util.UtilMensagens;
 
 @Controller
-@Scope("view")
+@Scope("session")
 public class ControladorProduto {
 
-	@Autowired
 	private Produto produto;
 
-	@Autowired
 	private Compra compra;
+	private Mercado mercado;
+
+	private ConsumoProduto consumo;
 
 	@Autowired
-	private ConsumoProduto consumo;
+	public ProdutoService produtoService;
+
+	@Autowired
+	public CompraService compraService;
+
+	@Autowired
+	public MercadoService mercadoService;
+
+	public ControladorProduto() {
+
+		produto = new Produto();
+		compra = new Compra();
+		consumo = new ConsumoProduto();
+		mercado = new Mercado();
+
+	}
+
+	public void salvar() {
+
+		produto = produtoService.salva(produto);
+		compra = compraService.salva(compra);
+		mercado = mercadoService.salva(mercado);
+		UtilMensagens.setMsgInfo("Produto Salvo com Sucesso!");
+	}
 
 	public Produto getProduto() {
 		return produto;
@@ -43,6 +72,14 @@ public class ControladorProduto {
 
 	public void setConsumo(ConsumoProduto consumo) {
 		this.consumo = consumo;
+	}
+
+	public Mercado getMercado() {
+		return mercado;
+	}
+
+	public void setMercado(Mercado mercado) {
+		this.mercado = mercado;
 	}
 
 }

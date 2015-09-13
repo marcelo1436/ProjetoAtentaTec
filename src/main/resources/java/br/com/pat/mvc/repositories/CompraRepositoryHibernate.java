@@ -1,7 +1,5 @@
 package br.com.pat.mvc.repositories;
 
-import java.util.List;
-
 import org.springframework.stereotype.Repository;
 
 import br.com.pat.mvc.model.Compra;
@@ -10,13 +8,13 @@ import br.com.pat.mvc.model.Compra;
 public class CompraRepositoryHibernate extends RepositoryBase implements CompraRepository {
 
 	@Override
-	public List<Compra> getCompras() {
-		return this.hibernateTemplate.loadAll(Compra.class);
+	public Compra getCompra() {
+		return this.hibernateTemplate.get(Compra.class, null);
 	}
 
 	@Override
-	public void salva(Compra compra) {
-		this.hibernateTemplate.save(compra);
+	public Compra salva(Compra compra) {
+		return (Compra) hibernateTemplate.save(compra);
 	}
 
 }

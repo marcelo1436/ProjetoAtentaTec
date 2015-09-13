@@ -5,6 +5,8 @@ import org.springframework.context.annotation.Configuration;
 
 import br.com.pat.mvc.repositories.CompraRepository;
 import br.com.pat.mvc.repositories.CompraRepositoryHibernate;
+import br.com.pat.mvc.repositories.MercadoRepository;
+import br.com.pat.mvc.repositories.MercadoRepositoryHibernate;
 import br.com.pat.mvc.repositories.ProdutoRepository;
 import br.com.pat.mvc.repositories.ProdutoRepositoyHibernate;
 import br.com.pat.mvc.repositories.UsuarioRepository;
@@ -27,4 +29,10 @@ public class RepositoriosConfiguration {
 	public ProdutoRepository getProdutoRepository() {
 		return new ProdutoRepositoyHibernate();
 	}
+
+	@Bean(name = "mercadoRepository")
+	public MercadoRepository getMercadoRepository() {
+		return new MercadoRepositoryHibernate();
+	}
+
 }

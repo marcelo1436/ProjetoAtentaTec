@@ -14,33 +14,57 @@
 
 <h:body>
 	<header>
-	<div id="divHeader">Cadastro de Produtos</div>
+	<div id="divHeader">CADASTRO DE PRODUTOS</div>
 	</header>
-	<p:panelGrid columns="4" columnClasses="rotulo,campo">
-		<h:panelGroup>
-			<p:outputLabel value="Nome do Produto:" for="nomeproduto" />
-			<p:inputText id="nomeproduto" maxlength="80" size="40" />
-			<p:outputLabel value="tipo do Produto:" for="tipoproduto" />
-			<p:inputText id="tipoproduto" maxlength="50" size="40" />
-			<p:outputLabel value="marca do Produto:" for="marcaproduto" />
-			<p:inputText id="marcaproduto" maxlength="30" size="30" />
-			<p:outputLabel value="Valor do Produto:" for="valorproduto" />
-			<p:inputText id="valorproduto" maxlength="9" size="10" />
-			<p:outputLabel value="Data de Validade do Produto:"
-				for="datavalidade" />
-			<p:calendar id="datavalidade" showOn="button" />
-			<p:outputLabel value="Quantidade de Consumo:" for="quantidadeconsumo" />
-			<p:inputText id="quantidadeconsumo" maxlength="5" size="5" value="" />
-		</h:panelGroup>
 
-		<h:panelGroup>
-			<p:dataTable></p:dataTable>
+	<p:growl id="growl" showDetail="true" sticky="true" />
 
-		</h:panelGroup>
+	<p:toolbar style="margin-bottom:10px;">
+		<f:facet name="left">
+			<p:commandButton value="Salvar Produto"
+				style="margin-right:5px; margin-left:5px"
+				action="#{controladorProduto.salvar}" update="growl" />
+			<p:commandButton value="Atualizar Tabela de Produtos"
+				process="tableProdutos" style="margin-right:5px; margin-left:5px" />
+			<p:commandButton value="Download XML"
+				style="margin-right:5px; margin-left:5px" />
+		</f:facet>
+	</p:toolbar>
+
+	<p:panelGrid columns="4" columnClasses="rotulo,campo,rotulo,campo">
+
+		<p:outputLabel value="Nome do Produto:" for="nomeproduto" />
+		<p:inputText id="nomeproduto" maxlength="80" size="40"
+			value="#{controladorProduto.produto.nomeProduto}" />
+		<p:outputLabel value="tipo do Produto:" for="tipoproduto" />
+		<p:inputText id="tipoproduto" maxlength="50" size="40"
+			value="#{controladorProduto.produto.tipoProduto}" />
+		<p:outputLabel value="marca do Produto:" for="marcaproduto" />
+		<p:inputText id="marcaproduto" maxlength="30" size="30"
+			value="#{controladorProduto.produto.marcaProduto}" />
+		<p:outputLabel value="Valor do Produto:" for="valorproduto" />
+		<p:inputText id="valorproduto" maxlength="9" size="10"
+			value="#{controladorProduto.produto.valorProduto}" />
+		<p:outputLabel value="Data de Validade do Produto:" for="datavalidade" />
+		<p:calendar id="datavalidade" showOn="button"
+			value="#{controladorProduto.produto.dataValidadeProduto}" />
+		<p:outputLabel value="Quantidade de produto:" for="quantidadeproduto" />
+		<p:inputText id="quantidadeproduto" maxlength="5" size="5"
+			value="#{controladorProduto.produto.quantidadeProduto}" />
+		<p:outputLabel value="Data da Compra" for="datacompra" />
+		<p:calendar id="datacompra" showOn="button"
+			value="#{controladorProduto.compra.dataCompra}" />
+		<p:outputLabel value="Nome do Mercado da Compra:" for="nomemercado" />
+		<p:inputText id="nomemercado" maxlength="80" size="60"
+			value="#{controladorProduto.mercado.nomeMercado}" />
 
 
 	</p:panelGrid>
+	<p:dataTable id="tableProdutos" editable="true"
+		emptyMessage="Nenhum produto encontrado." rows="20" paginator="true"
+		paginatorAlwaysVisible="false" paginatorPosition="bottom">
 
 
+	</p:dataTable>
 </h:body>
 </html>
