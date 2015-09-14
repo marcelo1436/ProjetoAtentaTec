@@ -13,41 +13,51 @@
 </h:head>
 
 <h:body>
-	<header> <h:form>
-		<div id="divHeader">CADASTRO DE PRODUTOS</div>
-		<div align="right" style="margin-top: -3%;">
-			<p:commandButton value="Logout"
-				action="#{controladorAutenticacao.logout()}" />
-		</div>
-	</h:form> </header>
+	<header> 
+		<h:form>
+			<div id="divHeader">CADASTRO DE PRODUTOS</div>
+			<div align="right" style="margin-top: -3%;">
+				<p:commandButton value="Logout" action="#{controladorAutenticacao.logout()}" />
+			</div>
+		</h:form> 
+	</header>
 
 	<h:form>
 		<p:growl id="growl" showDetail="true" sticky="true" />
+		
 		<p:toolbar style="margin-bottom:10px;">
 			<f:facet name="left">
-				<p:commandButton value="Novo Produto"
-					style="margin-right:5px; margin-left:5px" update="painelCadastro"
-					actionListener="#{controladorProduto.novoProduto}" />
-				<p:commandButton value="Atualizar Tabela de Produtos"
-					update="tableProdutos" style="margin-right:5px; margin-left:5px" />
-				<p:commandButton value="Download XML"
-					style="margin-right:5px; margin-left:5px"
-					action="#{controladorProduto.exportXml()}" />
+				<p:commandButton value="Novo Produto" style="margin-right:5px; margin-left:5px" update="painelCadastro" actionListener="#{controladorProduto.novoProduto}" />
+				<h:commandLink value="Exportar xml">
+	                <p:dataExporter type="xml" target="tableCompras" fileName="produtos" />
+	            </h:commandLink>
 			</f:facet>
 		</p:toolbar>
+		
+		<p:dataTable id="tableCompras" editable="false" value="#{controladorProduto.dataModelCompras}"
+			emptyMessage="Nenhum produto encontrado." rows="5" paginator="true"
+			selectionMode="single" selection="#{controladorProduto.compraSelecionada}" rowKey="#{compra.idCompra}"
+			paginatorAlwaysVisible="false" paginatorPosition="bottom" var="compra" style="margin-bottom: 2%;">
+			
+			<f:facet name="header">  
+                Lista de Produtos 
+            </f:facet>
 
-
-		<p:dataTable id="tableProdutos" editable="true"
-			emptyMessage="Nenhum produto encontrado." rows="20" paginator="true"
-			paginatorAlwaysVisible="false" paginatorPosition="bottom" value=""
-			var="produtos">
-
-
+  			<p:column headerText="Nome" sortBy="#{compra.produto.nomeProduto}" >
+		        <h:outputText value="#{compra.produto.nomeProduto}" />
+		    </p:column>
+		    
+  			<p:column headerText="Consumido">
+		        <h:outputText value="#{compra.produto.consumido}"/>
+		    </p:column>
+		    
+  			<p:column headerText="Ações" >
+		        <p:commandButton actionListener="#{controladorProduto.consumirProduto()}" value="Consumir" update="@form" disabled="#{compra.produto.consumido}"/>
+		    </p:column>
 		</p:dataTable>
 
 
-		<p:panelGrid id="painelCadastro" columns="4"
-			columnClasses="rotulo,campo,rotulo,campo">
+		<p:panelGrid id="painelCadastro" columns="4" columnClasses="rotulo,campo,rotulo,campo">
 			<p:outputLabel value="Nome do Produto:" for="nomeproduto" />
 			<p:inputText id="nomeproduto" maxlength="80" size="40"
 				value="#{controladorProduto.compra.produto.nomeProduto}" />
@@ -69,10 +79,6 @@
 			<p:calendar id="datavalidade" showOn="button"
 				value="#{controladorProduto.compra.produto.dataValidadeProduto}" />
 
-			<p:outputLabel value="Quantidade de produto:" for="quantidadeproduto" />
-			<p:inputText id="quantidadeproduto" maxlength="5" size="5"
-				value="#{controladorProduto.compra.produto.quantidadeProduto}" />
-
 			<p:outputLabel value="Data da Compra" for="datacompra" />
 			<p:calendar id="datacompra" showOn="button"
 				value="#{controladorProduto.compra.dataCompra}" />
@@ -84,12 +90,8 @@
 		<br />
 		<p:commandButton value="Salvar"
 			style="margin-right:5px; margin-left:5px"
-			action="#{controladorProduto.salvar}" />
-
-
-		<!--	<p:commandButton value="Cancelar"
-		style="margin-right:5px; margin-left:5px" 
-	action="#{controladorProduto.exportXml()}" /> -->
+			action="#{controladorProduto.salvar}" update="@form" ajax="true">
+		</p:commandButton>
 	</h:form>
 </h:body>
 </html>

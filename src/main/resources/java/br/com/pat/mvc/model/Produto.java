@@ -29,8 +29,8 @@ public class Produto implements Serializable {
 	private String marcaProduto;
 	private Integer valorProduto;
 	private Date dataValidadeProduto;
-	private Integer quantidadeProduto;
 	private List<ConsumoProduto> consumo;
+	private boolean consumido;
 
 	@Id
 	@GenericGenerator(name = "generator", strategy = "increment")
@@ -90,15 +90,6 @@ public class Produto implements Serializable {
 		this.dataValidadeProduto = dataValidadeProduto;
 	}
 
-	@Column(name = "quantidade_produto")
-	public Integer getQuantidadeProduto() {
-		return quantidadeProduto;
-	}
-
-	public void setQuantidadeProduto(Integer quantidadeProduto) {
-		this.quantidadeProduto = quantidadeProduto;
-	}
-
 	@OneToMany(cascade = CascadeType.ALL, mappedBy = "produto")
 	public List<ConsumoProduto> getConsumo() {
 		return consumo;
@@ -107,7 +98,15 @@ public class Produto implements Serializable {
 	public void setConsumo(List<ConsumoProduto> consumo) {
 		this.consumo = consumo;
 	}
-	
+
+	@Column(name = "consumido")
+	public boolean isConsumido() {
+		return consumido;
+	}
+
+	public void setConsumido(boolean consumido) {
+		this.consumido = consumido;
+	}
 
 	@Override
 	@Transactional

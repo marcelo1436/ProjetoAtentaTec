@@ -6,7 +6,7 @@ import javax.transaction.Transactional;
 
 import org.hibernate.Criteria;
 import org.hibernate.Session;
-import org.hibernate.criterion.Restrictions;
+import org.hibernate.criterion.Order;
 import org.springframework.stereotype.Repository;
 
 import br.com.pat.mvc.model.Compra;
@@ -28,15 +28,16 @@ public class CompraRepositoryHibernate extends RepositoryBase implements
 
 	@SuppressWarnings("unchecked")
 	@Override
-	public List<Compra> getDataCompra(Compra compra) {
+	public List<Compra> getCompras() {
 		Session sessao = getSession();
 		Criteria criteria = sessao.createCriteria(Compra.class);
-		criteria.add(Restrictions.eq("data_compra", compra.getDataCompra()));
+		criteria.addOrder(Order.asc("dataCompra"));
 
-		List<Compra> dataCompras = criteria.list();
+		List<Compra> compras = criteria.list();
+
 		sessao.close();
 
-		return dataCompras;
+		return compras;
 
 	}
 }

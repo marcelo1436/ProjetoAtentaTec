@@ -58,6 +58,10 @@ public class ProdutoService {
 		return produtoRepository.getProdutos(produto);
 	}
 
+	public List<Compra> getCompras() {
+		return compraRepository.getCompras();
+	}
+
 	private boolean validaProduto(Produto produto) {
 		boolean valido = true;
 
@@ -81,10 +85,6 @@ public class ProdutoService {
 		}
 		if (produto.getValorProduto() == null) {
 			UtilMensagens.setMsgError("Valor do produto é Obrigatorio");
-			valido = false;
-		}
-		if (produto.getQuantidadeProduto() == null) {
-			UtilMensagens.setMsgError("Quantidade do produto é Obrigatorio");
 			valido = false;
 		}
 
@@ -122,5 +122,12 @@ public class ProdutoService {
 			valido = false;
 		}
 		return valido;
+	}
+
+	public void consumirProduto(Compra compraSelecionada) {
+		Produto produto = compraSelecionada.getProduto();
+		produto.setConsumido(true);
+		
+		produtoRepository.alterar(produto);
 	}
 }

@@ -10,6 +10,6 @@ public interface CompraRepository {
 
 	public void salva(Compra compra);
 
-	public List<Compra> getDataCompra(Compra compra);
+	public List<Compra> getCompras();
 
 }

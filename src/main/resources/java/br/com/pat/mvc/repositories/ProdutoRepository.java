@@ -12,4 +12,5 @@ public interface ProdutoRepository {
 
 	public List<Produto> getProdutos(Produto produto);
 
+	public void alterar(Produto produto);
 }

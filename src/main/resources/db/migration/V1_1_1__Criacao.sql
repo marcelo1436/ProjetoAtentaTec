@@ -1,10 +1,3 @@
--- MySQL Workbench Synchronization
--- Generated: 2015-09-13 22:15
--- Model: New Model
--- Version: 1.0
--- Project: Name of the project
--- Author: Usuario
-
 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0;
 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0;
 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='TRADITIONAL,ALLOW_INVALID_DATES';
@@ -62,7 +55,7 @@ CREATE TABLE IF NOT EXISTS `provaatentatec`.`produto` (
   `marca_produto` VARCHAR(40) NULL DEFAULT NULL,
   `valor_produto` INT(11) NULL DEFAULT NULL,
   `dataValidade_produto` DATE NULL DEFAULT NULL,
-  `quantidade_produto` INT(11) NULL DEFAULT NULL,
+  `consumido` TINYINT(4) NOT NULL DEFAULT 0,
   PRIMARY KEY (`id_produto`))
 ENGINE = InnoDB
 DEFAULT CHARACTER SET = utf8

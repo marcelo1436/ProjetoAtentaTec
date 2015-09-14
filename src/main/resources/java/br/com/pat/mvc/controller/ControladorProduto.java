@@ -1,13 +1,17 @@
 package br.com.pat.mvc.controller;
 
+import java.util.List;
+
+import javax.annotation.PostConstruct;
 import javax.faces.event.ActionEvent;
+import javax.faces.model.DataModel;
+import javax.faces.model.ListDataModel;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 
 import br.com.pat.mvc.model.Compra;
-import br.com.pat.mvc.model.ConsumoProduto;
 import br.com.pat.mvc.model.Mercado;
 import br.com.pat.mvc.model.Produto;
 import br.com.pat.mvc.service.ProdutoService;
@@ -17,10 +21,9 @@ import br.com.pat.mvc.util.UtilMensagens;
 @Scope("session")
 public class ControladorProduto {
 
-	private Produto produto;
 	private Compra compra;
-	private Mercado mercado;
-	private ConsumoProduto consumo;
+	private Compra compraSelecionada;
+	private DataModel<Compra> dataModelCompras;
 
 	@Autowired
 	public ProdutoService produtoService;
@@ -31,8 +34,14 @@ public class ControladorProduto {
 		compra.setMercado(new Mercado());
 	}
 
+	@PostConstruct
+	public void init() {
+		dataModelCompras = new ListDataModel<Compra>(getCompras());
+	}
+
 	public void salvar() {
 		if (produtoService.salva(compra)) {
+			dataModelCompras = new ListDataModel<Compra>(getCompras());
 			UtilMensagens.setMsgInfo("Produto Salvo com Sucesso!");
 		} else {
 			UtilMensagens.setMsgInfo("Falha ao cadastrar produto!");
@@ -45,16 +54,10 @@ public class ControladorProduto {
 		compra.setMercado(new Mercado());
 	}
 
-	public void exportXml() {
-		// TODO exportar xml
-	}
-
-	public Produto getProduto() {
-		return produto;
-	}
-
-	public void setProduto(Produto produto) {
-		this.produto = produto;
+	public void consumirProduto() {
+		compraSelecionada = dataModelCompras.getRowData();
+		produtoService.consumirProduto(compraSelecionada);
+		UtilMensagens.setMsgInfo("Produto consumido!");
 	}
 
 	public Compra getCompra() {
@@ -65,24 +68,25 @@ public class ControladorProduto {
 		this.compra = compra;
 	}
 
-	public ConsumoProduto getConsumo() {
-		return consumo;
+	public Compra getCompraSelecionada() {
+		return compraSelecionada;
 	}
 
-	public void setConsumo(ConsumoProduto consumo) {
-		this.consumo = consumo;
+	public void setCompraSelecionada(Compra compraSelecionada) {
+		this.compraSelecionada = compraSelecionada;
 	}
 
-	public Mercado getMercado() {
-		return mercado;
+	public DataModel<Compra> getDataModelCompras() {
+		return dataModelCompras;
 	}
 
-	// public List<Produto> getProdutos() {
-	// compra = compraService.getDataCompra(compra);
+	public void setDataModelCompras(DataModel<Compra> dataModelCompras) {
+		this.dataModelCompras = dataModelCompras;
+	}
 
-	// return produtoService.getProdutos(produto);
-
-	// }
+	public List<Compra> getCompras() {
+		return produtoService.getCompras();
+	}
 
 	public Compra getDataCompra() {
 		return compra;
