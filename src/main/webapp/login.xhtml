@@ -12,22 +12,27 @@
 	<h:outputStylesheet library="css" name="sistema.css" />
 </h:head>
 
-<h:body>
-	<h2>Bem vindo</h2>
-	<h:form>
-		<div>
-			<p:growl id="growl" showDetail="true" sticky="true" />  
-			
-			<p:panelGrid columns="2" columnClasses="rotulo,campo">
-				<p:outputLabel value="Login" for="login" />
-				<p:inputText id="login" maxlength="50" size="30" value="#{controladorAutenticacao.usuario.login}"/>
-				<p:outputLabel value="Senha" for="senha" />
-				<p:password id="senha" maxlength="12" size="15" value="#{controladorAutenticacao.usuario.senha}"/>
-				<p:commandButton value="Enviar" action="#{controladorAutenticacao.logar()}" update="growl">
-				</p:commandButton>
-			</p:panelGrid>
-		</div>
+<h:body styleClass="bodyLogin"  >
+	<div id="divLogin">
+		<h2>Bem vindo</h2>
+		<h:form>
+			<div>
+				<p:growl id="growl" showDetail="true" sticky="true" />
 
-	</h:form>
+				<h:panelGrid columns="2" columnClasses="rotulo,campo">
+					<p:outputLabel value="Login" for="login" />
+					<p:inputText id="login" maxlength="30" size="15"
+						value="#{controladorAutenticacao.usuario.login}" />
+					<p:outputLabel value="Senha" for="senha" />
+					<p:password id="senha" maxlength="12" size="15"
+						value="#{controladorAutenticacao.usuario.senha}" />
+					<p:commandButton value="Enviar"
+						action="#{controladorAutenticacao.logar()}" update="growl">
+					</p:commandButton>
+				</h:panelGrid>
+			</div>
+
+		</h:form>
+	</div>
 </h:body>
 </html>

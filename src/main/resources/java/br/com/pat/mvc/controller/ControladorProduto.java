@@ -92,4 +92,8 @@ public class ControladorProduto {
 		return compra;
 
 	}
+
+	public void Limpar() {
+		compra = new Compra();
+	}
 }
