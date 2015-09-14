@@ -8,6 +8,7 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
@@ -49,6 +50,7 @@ public class Compra implements Serializable {
 	}
 
 	@OneToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name = "id_produto", unique = true, nullable = true, insertable = true, updatable = true)
 	public Produto getProduto() {
 		return produto;
 	}
@@ -57,7 +59,8 @@ public class Compra implements Serializable {
 		this.produto = produto;
 	}
 
-	@OneToOne(mappedBy = "compra", cascade = CascadeType.ALL)
+	@OneToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name = "id_mercado", unique = true, nullable = true, insertable = true, updatable = true)
 	public Mercado getMercado() {
 		return mercado;
 	}

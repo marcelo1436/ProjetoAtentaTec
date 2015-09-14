@@ -10,8 +10,6 @@ import br.com.pat.mvc.model.Compra;
 import br.com.pat.mvc.model.ConsumoProduto;
 import br.com.pat.mvc.model.Mercado;
 import br.com.pat.mvc.model.Produto;
-import br.com.pat.mvc.service.CompraService;
-import br.com.pat.mvc.service.MercadoService;
 import br.com.pat.mvc.service.ProdutoService;
 import br.com.pat.mvc.util.UtilMensagens;
 
@@ -27,30 +25,24 @@ public class ControladorProduto {
 	@Autowired
 	public ProdutoService produtoService;
 
-	@Autowired
-	public CompraService compraService;
-
-	@Autowired
-	public MercadoService mercadoService;
-
 	public ControladorProduto() {
-		produto = new Produto();
 		compra = new Compra();
-		consumo = new ConsumoProduto();
-		mercado = new Mercado();
+		compra.setProduto(new Produto());
+		compra.setMercado(new Mercado());
 	}
 
 	public void salvar() {
-		produtoService.salva(produto);
-		compraService.salva(compra);
-		mercadoService.salva(mercado);
-		UtilMensagens.setMsgInfo("Produto Salvo com Sucesso!");
+		if (produtoService.salva(compra)) {
+			UtilMensagens.setMsgInfo("Produto Salvo com Sucesso!");
+		} else {
+			UtilMensagens.setMsgInfo("Falha ao cadastrar produto!");
+		}
 	}
 
 	public void novoProduto(ActionEvent actionEvent) {
-		produto = new Produto();
 		compra = new Compra();
-		mercado = new Mercado();
+		compra.setProduto(new Produto());
+		compra.setMercado(new Mercado());
 	}
 
 	public void exportXml() {

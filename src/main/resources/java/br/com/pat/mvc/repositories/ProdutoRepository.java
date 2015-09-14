@@ -6,7 +6,9 @@ import br.com.pat.mvc.model.Produto;
 
 public interface ProdutoRepository {
 
-	public void salva(Produto produto);
+	public Integer salva(Produto produto);
+	
+	public Produto getProduto(Integer id);
 
 	public List<Produto> getProdutos(Produto produto);
 

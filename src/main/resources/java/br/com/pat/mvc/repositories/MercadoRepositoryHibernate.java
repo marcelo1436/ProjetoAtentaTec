@@ -1,21 +1,24 @@
 package br.com.pat.mvc.repositories;
 
+import javax.transaction.Transactional;
+
 import org.springframework.stereotype.Repository;
 
 import br.com.pat.mvc.model.Mercado;
 
 @Repository
-public class MercadoRepositoryHibernate extends RepositoryBase implements MercadoRepository {
+public class MercadoRepositoryHibernate extends RepositoryBase implements
+		MercadoRepository {
 
 	@Override
-	public Mercado getMercado() {
-		return getHibernateTemplate().get(Mercado.class, null);
+	public Mercado getMercado(Integer id) {
+		return getHibernateTemplate().get(Mercado.class, id);
 	}
 
 	@Override
-	public void salva(Mercado mercado) {
-		getHibernateTemplate().save(mercado);
-
+	@Transactional
+	public Integer salva(Mercado mercado) {
+		return (Integer) getHibernateTemplate().save(mercado);
 	}
 
 }

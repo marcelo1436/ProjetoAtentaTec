@@ -4,8 +4,8 @@ import br.com.pat.mvc.model.Mercado;
 
 public interface MercadoRepository {
 
-	public Mercado getMercado();
+	public Mercado getMercado(Integer id);
 
-	public void salva(Mercado mercado);
+	public Integer salva(Mercado mercado);
 
 }

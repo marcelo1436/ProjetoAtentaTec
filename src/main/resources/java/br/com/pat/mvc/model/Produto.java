@@ -107,6 +107,7 @@ public class Produto implements Serializable {
 	public void setConsumo(List<ConsumoProduto> consumo) {
 		this.consumo = consumo;
 	}
+	
 
 	@Override
 	@Transactional

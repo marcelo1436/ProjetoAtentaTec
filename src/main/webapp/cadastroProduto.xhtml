@@ -50,28 +50,28 @@
 			columnClasses="rotulo,campo,rotulo,campo">
 			<p:outputLabel value="Nome do Produto:" for="nomeproduto" />
 			<p:inputText id="nomeproduto" maxlength="80" size="40"
-				value="#{controladorProduto.produto.nomeProduto}" />
+				value="#{controladorProduto.compra.produto.nomeProduto}" />
 
 			<p:outputLabel value="tipo do Produto:" for="tipoproduto" />
 			<p:inputText id="tipoproduto" maxlength="50" size="40"
-				value="#{controladorProduto.produto.tipoProduto}" />
+				value="#{controladorProduto.compra.produto.tipoProduto}" />
 
 			<p:outputLabel value="marca do Produto:" for="marcaproduto" />
 			<p:inputText id="marcaproduto" maxlength="30" size="30"
-				value="#{controladorProduto.produto.marcaProduto}" />
+				value="#{controladorProduto.compra.produto.marcaProduto}" />
 
 			<p:outputLabel value="Valor do Produto:" for="valorproduto" />
 			<p:inputText id="valorproduto" maxlength="9" size="10"
-				value="#{controladorProduto.produto.valorProduto}" />
+				value="#{controladorProduto.compra.produto.valorProduto}" />
 
 			<p:outputLabel value="Data de Validade do Produto:"
 				for="datavalidade" />
 			<p:calendar id="datavalidade" showOn="button"
-				value="#{controladorProduto.produto.dataValidadeProduto}" />
+				value="#{controladorProduto.compra.produto.dataValidadeProduto}" />
 
 			<p:outputLabel value="Quantidade de produto:" for="quantidadeproduto" />
 			<p:inputText id="quantidadeproduto" maxlength="5" size="5"
-				value="#{controladorProduto.produto.quantidadeProduto}" />
+				value="#{controladorProduto.compra.produto.quantidadeProduto}" />
 
 			<p:outputLabel value="Data da Compra" for="datacompra" />
 			<p:calendar id="datacompra" showOn="button"
@@ -79,7 +79,7 @@
 
 			<p:outputLabel value="Nome do Mercado da Compra:" for="nomemercado" />
 			<p:inputText id="nomemercado" maxlength="80" size="60"
-				value="#{controladorProduto.mercado.nomeMercado}" />
+				value="#{controladorProduto.compra.mercado.nomeMercado}" />
 		</p:panelGrid>
 		<br />
 		<p:commandButton value="Salvar"

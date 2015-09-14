@@ -2,6 +2,8 @@ package br.com.pat.mvc.repositories;
 
 import java.util.List;
 
+import javax.transaction.Transactional;
+
 import org.hibernate.Criteria;
 import org.hibernate.Session;
 import org.hibernate.criterion.Restrictions;
@@ -10,7 +12,8 @@ import org.springframework.stereotype.Repository;
 import br.com.pat.mvc.model.Compra;
 
 @Repository
-public class CompraRepositoryHibernate extends RepositoryBase implements CompraRepository {
+public class CompraRepositoryHibernate extends RepositoryBase implements
+		CompraRepository {
 
 	@Override
 	public Compra getCompra() {
@@ -18,6 +21,7 @@ public class CompraRepositoryHibernate extends RepositoryBase implements CompraR
 	}
 
 	@Override
+	@Transactional
 	public void salva(Compra compra) {
 		getHibernateTemplate().save(compra);
 	}

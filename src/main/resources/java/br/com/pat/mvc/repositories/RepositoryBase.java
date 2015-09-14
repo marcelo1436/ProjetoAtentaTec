@@ -12,8 +12,7 @@ public class RepositoryBase {
 	}
 
 	protected HibernateTemplate getHibernateTemplate() {
-		hibernateTemplate.getSessionFactory().getCurrentSession()
-				.setFlushMode(FlushMode.AUTO);
+		hibernateTemplate.getSessionFactory().getCurrentSession().setFlushMode(FlushMode.AUTO);
 		return hibernateTemplate;
 	}
 
