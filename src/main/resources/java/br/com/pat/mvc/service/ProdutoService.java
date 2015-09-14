@@ -1,5 +1,7 @@
 package br.com.pat.mvc.service;
 
+import java.util.List;
+
 import javax.annotation.Resource;
 
 import org.springframework.stereotype.Service;
@@ -14,13 +16,13 @@ public class ProdutoService {
 	@Resource(name = "produtoRepository")
 	public ProdutoRepository produtoRepository;
 
-	public Produto salva(Produto produto) {
+	public void salva(Produto produto) {
 		validaProduto(produto);
-		return produtoRepository.salva(produto);
+		produtoRepository.salva(produto);
 	}
 
-	public Produto getProduto() {
-		return produtoRepository.getProduto();
+	public List<Produto> getProdutos(Produto produto) {
+		return produtoRepository.getProdutos(produto);
 	}
 
 	private void validaProduto(Produto produto) {

@@ -6,6 +6,6 @@ public interface MercadoRepository {
 
 	public Mercado getMercado();
 
-	public Mercado salva(Mercado mercado);
+	public void salva(Mercado mercado);
 
 }

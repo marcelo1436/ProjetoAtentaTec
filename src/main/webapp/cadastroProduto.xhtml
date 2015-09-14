@@ -39,20 +39,13 @@
 
 		<p:dataTable id="tableProdutos" editable="true"
 			emptyMessage="Nenhum produto encontrado." rows="20" paginator="true"
-			paginatorAlwaysVisible="false" paginatorPosition="bottom">
-			
-			<p:column headerText="Nome do Produto" ></p:column>
-			<p:column headerText="Marca do Produto" ></p:column>
-			<p:column headerText="Tipo do Produto" ></p:column>
-			<p:column headerText="Nome do Produto" ></p:column>
-			<p:column headerText="Nome do Produto" ></p:column>
-			<p:column headerText="Nome do Produto" ></p:column>
-			<p:column headerText="Nome do Produto" ></p:column>
-			<p:column headerText="Nome do Produto" ></p:column>
-			
+			paginatorAlwaysVisible="false" paginatorPosition="bottom" value=""
+			var="produtos">
+
+
 		</p:dataTable>
-	
-	
+
+
 		<p:panelGrid id="painelCadastro" columns="4"
 			columnClasses="rotulo,campo,rotulo,campo">
 			<p:outputLabel value="Nome do Produto:" for="nomeproduto" />
@@ -91,9 +84,9 @@
 		<br />
 		<p:commandButton value="Salvar"
 			style="margin-right:5px; margin-left:5px"
-			action="#{controladorProduto.salvar()}" />
-			
-			
+			action="#{controladorProduto.salvar}" />
+
+
 		<!--	<p:commandButton value="Cancelar"
 		style="margin-right:5px; margin-left:5px" 
 	action="#{controladorProduto.exportXml()}" /> -->

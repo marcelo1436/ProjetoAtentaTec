@@ -14,9 +14,9 @@ public class MercadoService {
 	@Resource(name = "mercadoRepository")
 	public MercadoRepository mercadoRepository;;
 
-	public Mercado salva(Mercado mercado) {
+	public void salva(Mercado mercado) {
 		validaMercado(mercado);
-		return mercadoRepository.salva(mercado);
+		mercadoRepository.salva(mercado);
 	}
 
 	public Mercado getCompra() {

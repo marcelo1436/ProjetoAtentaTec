@@ -1,6 +1,6 @@
 package br.com.pat.mvc.service;
 
-import java.util.Date;
+import java.util.List;
 
 import javax.annotation.Resource;
 
@@ -21,15 +21,13 @@ public class CompraService {
 	@Autowired
 	public ProdutoRepository produtoRepository;
 
-	public Compra salva(Compra compra) {
+	public void salva(Compra compra) {
 		validaCompra(compra);
-		compra.setDataCompra(new Date());
-		compra.setProduto(produtoRepository.getProduto());
-		return compraRepository.salva(compra);
+		compraRepository.salva(compra);
 	}
 
-	public Compra getCompra() {
-		return compraRepository.getCompra();
+	public List<Compra> getDataCompra(Compra compra) {
+		return compraRepository.getDataCompra(compra);
 	}
 
 	private void validaCompra(Compra compra) {

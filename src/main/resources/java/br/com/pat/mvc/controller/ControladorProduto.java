@@ -20,10 +20,8 @@ import br.com.pat.mvc.util.UtilMensagens;
 public class ControladorProduto {
 
 	private Produto produto;
-
 	private Compra compra;
 	private Mercado mercado;
-
 	private ConsumoProduto consumo;
 
 	@Autowired
@@ -43,11 +41,12 @@ public class ControladorProduto {
 	}
 
 	public void salvar() {
-		produto = produtoService.salva(produto);
-		compra = compraService.salva(compra);
-		mercado = mercadoService.salva(mercado);
+		produtoService.salva(produto);
+		compraService.salva(compra);
+		mercadoService.salva(mercado);
 		UtilMensagens.setMsgInfo("Produto Salvo com Sucesso!");
 	}
+
 	public void novoProduto(ActionEvent actionEvent) {
 		produto = new Produto();
 		compra = new Compra();
@@ -55,7 +54,7 @@ public class ControladorProduto {
 	}
 
 	public void exportXml() {
-		//TODO exportar xml
+		// TODO exportar xml
 	}
 
 	public Produto getProduto() {
@@ -86,4 +85,15 @@ public class ControladorProduto {
 		return mercado;
 	}
 
+	// public List<Produto> getProdutos() {
+	// compra = compraService.getDataCompra(compra);
+
+	// return produtoService.getProdutos(produto);
+
+	// }
+
+	public Compra getDataCompra() {
+		return compra;
+
+	}
 }
